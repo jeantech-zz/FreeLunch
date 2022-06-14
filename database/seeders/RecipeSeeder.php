@@ -20,6 +20,6 @@ class RecipeSeeder extends Seeder
         Recipe::create(['name'=>"Burger"]);
         Recipe::create(['name'=>"Tomato Cream"]);
         Recipe::create(['name'=>"Potatoes with meat"]);
-        Recipe::create(['name'=>"Chicken rice"]);
+        Recipe::create(['name'=>"Vegetables rice"]);
     }
 }

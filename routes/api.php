@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/listWarehouse', [WarehouseController::class, 'index'])->name('warehouses');
+
+Route::get('/listRecipe', [RecipeController::class, 'index'])->name('recipe');
+
