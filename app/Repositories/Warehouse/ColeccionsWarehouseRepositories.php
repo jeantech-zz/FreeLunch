@@ -16,9 +16,10 @@ class ColeccionsWarehouseRepositories implements WarehouseRepositories
      return $warehouse->id;
     }
 
-    public function listWarehouse():collection
+    public function listWarehouse()
     {        
-        return Warehouse::get();
+        return Warehouse::select('warehouses.*', 'products.name as product_name')
+        ->join('products', 'warehouses.product_id', '=', 'products.id')->get();
     }
 
 }
