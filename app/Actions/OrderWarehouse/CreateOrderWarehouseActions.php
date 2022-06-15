@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Actions\Warehouse;
+namespace App\Actions\OrderWarehouse;
 
-use App\Models\Warehouse;
+use App\Models\OrderWarehouse;
 
-class CreateWarehouseActions
+class CreateOrderWarehouseActions
 {
     public static function execute(array $data): Warehouse
     {
-        return Warehouse::create([
-            'product_id' => $data['product_id'],
-            'quantity' =>  $data['quantity']
+        return OrderWarehouse::create([
+            'recipe_id' => $data['recipe_id'],
+            'order_plates_id' =>  $data['order_plates_id'],
+            'status' =>  $data['status']
         ]);
     }
 }

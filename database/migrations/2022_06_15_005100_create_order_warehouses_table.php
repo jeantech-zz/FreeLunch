@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('order_warehouses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_plates_id')->constrained('order_plates'); 
+            $table->string('status');   
             $table->timestamps();
         });
     }
