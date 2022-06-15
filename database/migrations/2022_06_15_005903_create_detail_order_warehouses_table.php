@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('detail_order_warehouses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_warehouses_id')->constrained('order_warehouses');  
+            $table->foreignId('product_id')->constrained('products'); 
+            $table->unsignedInteger('quantity');                 
             $table->timestamps();
         });
     }
