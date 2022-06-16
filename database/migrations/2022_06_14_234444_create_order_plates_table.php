@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('order_plates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('recipe_id')->constrained('recipes');     
-            $table->string('status');          
+            $table->unsignedInteger('quantity');
+            $table->string('status');
             $table->timestamps();
         });
     }
