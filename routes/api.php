@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\OrderWarehouseController;
+use App\Http\Controllers\OrderPlateController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,12 @@ Route::get('/listRecipe', [RecipeController::class, 'index'])->name('recipe');
 
 
 Route::apiResource('listOrderWarehouse', OrderWarehouseController::class)->only(['index']);
+
+Route::get('/generateOrder', [OrderPlateController::class, 'generatePlate'])->name('generatePlate');
+
+Route::get('/createOrderPlate', [OrderPlateController::class, 'createOrderPlate'])->name('createOrderPlate');
+
+Route::get('/listOrderKitche', [OrderPlateController::class, 'index'])->name('generatePlate');
+
+
+
