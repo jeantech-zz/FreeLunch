@@ -13,4 +13,12 @@ class ColeccionsRecipeRepositories implements RecipeRepositories
         return   $recipe->id;
     }
 
+    public function listRecipe()
+    {        
+        return Recipe::select('recipes.*', 'products.name as product_name', 'detail_recipes.quantity')
+        ->join('detail_recipes', 'detail_recipes.recipe_id', '=', 'recipes.id')
+        ->join('products', 'detail_recipes.product_id', '=', 'products.id')
+        ->get();
+    }
+
 }

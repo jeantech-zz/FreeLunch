@@ -3,6 +3,7 @@
 namespace App\Repositories\Product;
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 
 class ColeccionsProductRepositories implements ProductRepositories
 {
@@ -10,6 +11,11 @@ class ColeccionsProductRepositories implements ProductRepositories
     {        
         $product = Product::where('name',$nameProduct) ->first();
         return   $product->id;
+    }
+
+    public function listProducts():collection
+    {        
+        return    Product::get();
     }
 
 }
