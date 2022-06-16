@@ -7,4 +7,6 @@ interface RecipeRepositories
     public function RecipeId(string $nameRecipe);
 
     public function listRecipe();
+
+    public function generatePlate();
 }
