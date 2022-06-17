@@ -9,7 +9,7 @@ class ColeccionsOrderWarehouseRepositories implements OrderWarehouseRepositories
 {
     public function listOrderWarehouse(string $status):collection
     {
-        return OrderWarehouse::orWhere('status', 'LIKE', $status)
+        return OrderWarehouse::orWhere('status', 'LIKE', '%'.$status.'%')
         ->get();
 
     }

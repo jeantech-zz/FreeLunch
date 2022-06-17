@@ -6,12 +6,12 @@ use App\Models\OrderWarehouse;
 
 class UpdateOrderWarehouseActions
 {
-    public static function execute(array $data): Product
+    public static function execute(array $data): OrderWarehouse
     {
-      
+
         $record = OrderWarehouse::find($data['id']);
-        
-        $record->update([ 
+
+        $record->update([
             'status' =>  $data['status']
         ]);
 

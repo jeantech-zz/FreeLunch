@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products');        
-            $table->unsignedInteger('quantity');         
+            $table->foreignId('product_id')->constrained('products');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
