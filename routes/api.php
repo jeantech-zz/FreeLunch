@@ -36,7 +36,10 @@ Route::get('/generateOrder', [OrderPlateController::class, 'generatePlate'])->na
 
 Route::get('/createOrderPlate', [OrderPlateController::class, 'createOrderPlate'])->name('createOrderPlate');
 
-Route::get('/listOrderKitche', [OrderPlateController::class, 'index'])->name('generatePlate');
+Route::get('/listOrderKitche', [OrderPlateController::class, 'index'])->name('listOrderKitche');
+
+Route::get('/generateOrderWharehouse', [OrderPlateController::class, 'generateOrderWharehouse'])->name('generateOrderWharehouse');
+
 
 
 

@@ -6,11 +6,10 @@ use App\Models\OrderWarehouse;
 
 class CreateOrderWarehouseActions
 {
-    public static function execute(array $data): Warehouse
+    public static function execute(array $data): OrderWarehouse
     {
         return OrderWarehouse::create([
-            'recipe_id' => $data['recipe_id'],
-            'order_plates_id' =>  $data['order_plates_id'],
+            'order_plates_id' => $data['order_plates_id'],
             'status' =>  $data['status']
         ]);
     }

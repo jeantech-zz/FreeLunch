@@ -16,10 +16,9 @@ class ColeccionsOrderPlateRepositories implements OrderPlateRepositories
 
     public function listOrderPlateDetail(string $status):collection
     {
-        return OrderPlate::select('order_warehouses.*', 'products.name as product_name', 'detail_order_warehouses.quantity as quantity')
-        ->join('detail_order_plates', 'detail_order_plates.order_plate_id', '=', 'order_warehouses.id')
-        ->join('products', 'detail_order_warehouses.product_id', '=', 'products.id')
-        ->orWhere('status', 'LIKE', $status)
+        return OrderPlate::select('order_plates.*', 'detail_order_plates.recipes_id')
+        ->join('detail_order_plates', 'detail_order_plates.order_plates_id', '=', 'order_plates.id')
+        ->Where('order_plates.status', 'LIKE', $status)
         ->get();
 
     }

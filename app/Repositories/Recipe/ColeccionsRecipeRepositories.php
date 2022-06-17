@@ -27,4 +27,14 @@ class ColeccionsRecipeRepositories implements RecipeRepositories
         $idRecipe = $recipe->random();
         return  $idRecipe->id;
     }
+
+    public function listRecipeId(int $id)
+    {
+        return Recipe::select('recipes.*', 'products.name as product_name', 'products.id as product_id', 'detail_recipes.quantity')
+        ->join('detail_recipes', 'detail_recipes.recipe_id', '=', 'recipes.id')
+        ->join('products', 'detail_recipes.product_id', '=', 'products.id')
+        ->Where('recipes.id', 'LIKE', $id)
+        ->get();
+    }
+
 }
