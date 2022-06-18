@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Actions\DetailOrderPlate\CreateDetailOrderPlateActions;
 use App\Actions\DetailOrderWarehouse\CreateDetailOrderWarehouseActions;
+use App\Actions\OrderBuy\CreateOrderBuyActions;
 use App\Actions\OrderPlate\CreateOrderPlateActions;
 use App\Actions\OrderPlate\UpdateOrderPlateActions;
 use App\Actions\OrderWarehouse\CreateOrderWarehouseActions;
+use App\Actions\OrderBuy\UpdateOrderBuyActions;
 use App\Actions\Warehouse\UpdateWarehouseActions;
 use App\BuyGateway\FarmersMarketBuy;
 use App\Http\Requests\OrderPlate\IndexOrderPlateRequest;
@@ -154,8 +156,24 @@ class OrderPlateController extends Controller
         }else{
             $url ="https://recruitment.alegra.com/api/farmers-market/buy";
             $productName = $dataValidateProcessOrderPlates['list_recipe_product_name'];
+            $idOrderPlate = $dataValidateProcessOrderPlates['order_plate_id'];
+
+            $dataOrderBuy = [
+                'product_name' => $productName,
+                'order_plates_id' =>  $idOrderPlate
+            ];
+
+            $createOrderBuy = CreateOrderBuyActions::execute($dataOrderBuy);
 
             $buyProducQuantity = $this->getBuyGateway->buyProduct($url, $productName);
+
+
+            $dataUpdateOrderBuy = [
+                'id' => $createOrderBuy->id,
+                'quantity_buys' =>  $buyProducQuantity['quantitySold']
+            ];
+
+            $updateOrderBuy = UpdateOrderBuyActions::execute($dataUpdateOrderBuy);
 
             $resultQuantityWarehouse =  $quantityProductWarehouse['quantity'] + $buyProducQuantity['quantitySold'];
 
@@ -166,7 +184,7 @@ class OrderPlateController extends Controller
                 "statusOrderPlate" =>  "dstart"
             ];
 
-            return  $this->updateProcessOrderPlates($dataProcessOrder);
+            $this->updateProcessOrderPlates($dataProcessOrder);
 
             return [
                 "url" => $url,
