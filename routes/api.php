@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderBuyController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\OrderWarehouseController;
@@ -39,6 +40,8 @@ Route::post('/createOrderPlate', [OrderPlateController::class, 'createOrderPlate
 Route::post('/listOrderKitchet', [OrderPlateController::class, 'index'])->name('listOrderKitche');
 
 Route::get('/generateOrderWharehouse', [OrderPlateController::class, 'generateOrderWharehouse'])->name('generateOrderWharehouse');
+
+Route::get('/listOrderBuys', [OrderBuyController::class, 'index'])->name('listOrderBuys');
 
 
 
