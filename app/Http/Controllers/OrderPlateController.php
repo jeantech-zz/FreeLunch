@@ -87,34 +87,37 @@ class OrderPlateController extends Controller
     public function generateOrderWharehouse()
     {
         $orderPlates = $this->coleccionOrderPlate->listOrderPlateDetail("start");
+        $statusGenerateOrder = "finish";
+        $validateProcessOrderPlates="";
+        if(isset($orderPlates)){
+            foreach($orderPlates as $orderPlate){
 
-        foreach($orderPlates as $orderPlate){
+                $dataOrderWarehouse = [
+                    "order_plates_id" => $orderPlate->id,
+                    "status" => "start"
+                    ] ;
 
-            $dataOrderWarehouse = [
-                "order_plates_id" => $orderPlate->id,
-                "status" => "start"
-                ] ;
+                $createOrderWarehouse = CreateOrderWarehouseActions::execute($dataOrderWarehouse);
+                $listRecipesId = $this->coleccionRecipe->listRecipeId($orderPlate->recipes_id);
 
-            $createOrderWarehouse = CreateOrderWarehouseActions::execute($dataOrderWarehouse);
-            $listRecipesId = $this->coleccionRecipe->listRecipeId($orderPlate->recipes_id);
+                foreach ($listRecipesId as $listRecipeId){
 
-            foreach ($listRecipesId as $listRecipeId){
-
-                $dataValidateProcessOrderPlates = [
-                            "order_plate_id" => $orderPlate->id,
-                            "list_recipe_id_quantity" => $listRecipeId->quantity,
-                            "list_recipe_product_name" => $listRecipeId->product_name,
-                            "order_warehouses_id" => $createOrderWarehouse->id,
-                            "product_id" =>  $listRecipeId->product_id,
-                            "list_recipe_quantity" => $listRecipeId->quantity
-                ];
-                $validateProcessOrderPlates = $this->validateProcessOrderPlates($dataValidateProcessOrderPlates);
+                    $dataValidateProcessOrderPlates = [
+                                "order_plate_id" => $orderPlate->id,
+                                "list_recipe_id_quantity" => $listRecipeId->quantity,
+                                "list_recipe_product_name" => $listRecipeId->product_name,
+                                "order_warehouses_id" => $createOrderWarehouse->id,
+                                "product_id" =>  $listRecipeId->product_id,
+                                "list_recipe_quantity" => $listRecipeId->quantity
+                    ];
+                    $validateProcessOrderPlates = $this->validateProcessOrderPlates($dataValidateProcessOrderPlates);
+                }
             }
         }
 
         return response()->json(
             ['data' =>  $validateProcessOrderPlates,
-            'staus' =>  "200" ],
+            'staus' =>  $statusGenerateOrder ],
             Response::HTTP_OK
         );
     }

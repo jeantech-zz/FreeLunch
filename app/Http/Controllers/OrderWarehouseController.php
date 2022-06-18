@@ -25,10 +25,6 @@ class OrderWarehouseController extends Controller
             ['data' =>  $orderWarehouses  ],
             Response::HTTP_OK
         );
-       // dd($request->validated());
-        //return $request->json()->all();
-       // return response()->json(['status'=>'ok','data'=>$request->validated()], 200);
-     // return $this->coleccionsOrderWarehouse->listOrderWarehouse($request->validated());
     }
 
 }

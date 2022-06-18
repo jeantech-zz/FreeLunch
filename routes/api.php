@@ -30,13 +30,13 @@ Route::get('/listRecipe', [RecipeController::class, 'index'])->name('recipe');
 //Route::get('/listOrderWarehouse/{status}', [OrderWarehouseController::class, 'index'])->name('recipe');
 
 
-Route::apiResource('listOrderWarehouse', OrderWarehouseController::class)->only(['index']);
+Route::post('/listOrderWarehouse', [OrderWarehouseController::class, 'index'])->name('listOrderWarehouse');
 
 Route::get('/generateOrder', [OrderPlateController::class, 'generatePlate'])->name('generatePlate');
 
-Route::get('/createOrderPlate', [OrderPlateController::class, 'createOrderPlate'])->name('createOrderPlate');
+Route::post('/createOrderPlate', [OrderPlateController::class, 'createOrderPlate'])->name('createOrderPlate');
 
-Route::get('/listOrderKitche', [OrderPlateController::class, 'index'])->name('listOrderKitche');
+Route::post('/listOrderKitchet', [OrderPlateController::class, 'index'])->name('listOrderKitche');
 
 Route::get('/generateOrderWharehouse', [OrderPlateController::class, 'generateOrderWharehouse'])->name('generateOrderWharehouse');
 
