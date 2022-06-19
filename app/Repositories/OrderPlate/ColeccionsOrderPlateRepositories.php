@@ -9,8 +9,13 @@ class ColeccionsOrderPlateRepositories implements OrderPlateRepositories
 {
     public function listOrderPlate(string $status):Collection
     {
-        return OrderPlate::Where('status', 'LIKE', $status)
-        ->get();
+        if($status=="-"){
+            $orderPlates = OrderPlate::get();
+        }else{
+            $orderPlates = OrderPlate::Where('status', 'LIKE', $status)->get();
+        }
+
+        return $orderPlates ;
 
     }
 
