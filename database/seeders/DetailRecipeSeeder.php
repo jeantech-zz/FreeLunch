@@ -44,19 +44,19 @@ class DetailRecipeSeeder extends Seeder
 
         DetailRecipe::create([
             'recipe_id'=>  $salad,
-            'product_id'=> $this->coleccionProduct->productId('lettuce'),
+            'product_id'=> $this->coleccionProduct->productId('onion'),
             'quantity'=> 1,
         ]);
 
         DetailRecipe::create([
             'recipe_id'=>  $salad,
-            'product_id'=> $this->coleccionProduct->productId('lettuce'),
+            'product_id'=> $this->coleccionProduct->productId('cheese'),
             'quantity'=> 1,
         ]);
 
         DetailRecipe::create([
             'recipe_id'=>  $salad,
-            'product_id'=>$this->coleccionProduct->productId('lettuce'),
+            'product_id'=>$this->coleccionProduct->productId('chicken'),
             'quantity'=> 1,
         ]);
 
@@ -158,18 +158,24 @@ class DetailRecipeSeeder extends Seeder
             'quantity'=> 2,
         ]);
 
-        //Chicken rice
-        $chickenRice = $this->coleccionRecipe->RecipeId('Chicken rice');
+        //Vegetables rice
+        $vegetablesRice = $this->coleccionRecipe->RecipeId('Vegetables rice');
         DetailRecipe::create([
-              'recipe_id'=>  $chickenRice,
+              'recipe_id'=>  $vegetablesRice,
               'product_id'=> $this->coleccionProduct->productId('rice'),
               'quantity'=> 2,
         ]);
 
         DetailRecipe::create([
-              'recipe_id'=>  $chickenRice,
-              'product_id'=> $this->coleccionProduct->productId('chicken'),
+              'recipe_id'=>  $vegetablesRice,
+              'product_id'=> $this->coleccionProduct->productId('tomato'),
               'quantity'=> 2,
         ]);
+
+        DetailRecipe::create([
+            'recipe_id'=>  $vegetablesRice,
+            'product_id'=> $this->coleccionProduct->productId('ketchup'),
+            'quantity'=> 2,
+      ]);
     }
 }
